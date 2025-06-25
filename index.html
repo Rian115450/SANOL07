@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Discover Sanol</title>
+  <meta name="theme-color" content="#0d0d0d"/>
+  <link rel="manifest" href="data:application/manifest+json,{
+    &quot;name&quot;:&quot;Discover Sanol&quot;,
+    &quot;short_name&quot;:&quot;Sanol&quot;,
+    &quot;start_url&quot;:&quot;.&quot;,
+    &quot;display&quot;:&quot;standalone&quot;,
+    &quot;background_color&quot;:&quot;#0d0d0d&quot;,
+    &quot;theme_color&quot;:&quot;#0d0d0d&quot;,
+    &quot;icons&quot;:[
+      {
+        &quot;src&quot;:&quot;https://via.placeholder.com/192&quot;,
+        &quot;sizes&quot;:&quot;192x192&quot;,
+        &quot;type&quot;:&quot;image/png&quot;
+      },
+      {
+        &quot;src&quot;:&quot;https://via.placeholder.com/512&quot;,
+        &quot;sizes&quot;:&quot;512x512&quot;,
+        &quot;type&quot;:&quot;image/png&quot;
+      }
+    ]
+  }"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d0d0d;
+      color: #f0f0f0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .hero {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(to right, #111, #1a1a1a);
+      text-align: center;
+    }
+
+    .text {
+      max-width: 700px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color: #ffcc00;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #bbbbbb;
+    }
+
+    .description {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: #ff5e57;
+      color: white;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #e14c45;
+    }
+
+    footer {
+      padding: 1rem;
+      text-align: center;
+      background-color: #111;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <div class="text">
+        <h1>Discover Sanol</h1>
+        <p class="subtitle">A journey of joy and mystery</p>
+        <p class="description">
+          <strong>Sanol Book Series</strong> takes you on an exhilarating journey through the eyes of <strong>Mukesh</strong>,
+          a shopkeeper in Pune, who uncovers secrets in his barbershop while navigating the trials of life.
+        </p>
+        <p class="description">
+          Written by <strong>Rian Jakhar</strong> and <strong>Suraj Bhatt</strong>, this captivating series blends joy, comedy, and suspense.
+          Dive into the first installment and follow Mukesh as he strives to reunite with his mother, only to encounter unexpected twists.
+        </p>
+        <p class="description">
+          The sequel, <strong>Sanol 2</strong>, introduces new characters and further intrigues.
+          Join us in exploring this unique narrative that resonates with readers of all ages.
+        </p>
+        <a href="https://example.com/read" class="cta-button">Start Reading</a>
+      </div>
+    </section>
+    <footer>&copy; 2025 Sanol Books. All rights reserved.</footer>
+  </main>
+
+  <script>
+    const swScript = `
+      self.addEventListener("install", (event) => {
+        event.waitUntil(
+          caches.open("sanol-cache").then((cache) => {
+            return cache.addAll(["/"]);
+          })
+        );
+      });
+
+      self.addEventListener("fetch", (event) => {
+        event.respondWith(
+          caches.match(event.request).then((response) => {
+            return response || fetch(event.request);
+          })
+        );
+      });
+    `;
+
+    // Inject service worker dynamically from string
+    const blob = new Blob([swScript], { type: 'text/javascript' });
+    const swURL = URL.createObjectURL(blob);
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register(swURL).then(() => {
+        console.log("🔧 Service Worker registered.");
+      });
+    }
+  </script>
+</body>
+</html>
