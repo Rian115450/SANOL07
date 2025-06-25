@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discover Sanol</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#121212" />
+</head>
+<body>
+  <header>
+    <h1>Discover Sanol</h1>
+    <p class="subtitle">A journey of joy and mystery</p>
+    <button onclick="window.location.href='https://example.com/read'">Read Now</button>
+  </header>
+
+  <section>
+    <h2>Sanol Book Series</h2>
+    <p>
+      Sanol Book Series takes you on an exhilarating journey through the eyes of Mukesh, a shopkeeper in Pune,
+      who uncovers secrets in his barbershop while navigating the trials of life.
+    </p>
+    <p>
+      Written by <strong>Rian Jakhar</strong> and <strong>Suraj Bhatt</strong>, this captivating series blends joy,
+      comedy, and suspense. Dive into the first installment and follow Mukesh as he strives to reunite with his mother,
+      only to encounter unexpected twists.
+    </p>
+    <p>
+      The sequel, <strong>Sanol 2</strong>, introduces new characters and further intrigues.
+      Join us in exploring this unique narrative that resonates with readers of all ages.
+    </p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Sanol Books. All rights reserved.</p>
+  </footer>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+  </script>
+</body>
+</html>
